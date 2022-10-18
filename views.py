@@ -60,18 +60,15 @@ class WelcomeScreen(arcade.View):
         self.manager = arcade.gui.UIManager()
         self.manager.enable()
         self.v_box = arcade.gui.UIBoxLayout()
-        newgame_button = but.NewGameButton(x=constantes.SCREEN_WIDTH / 2, y=constantes.SCREEN_HEIGHT/1.5 + 4*32,
-                                               text="Nouvelle Partie", width=200,height=28)
+        newgame_button = but.NewGameButton(text="Nouvelle Partie", width=200, height=28)
         self.v_box.add(newgame_button.with_space_around(bottom=15))
-        load_button = but.LoadGameButton(x=constantes.SCREEN_WIDTH / 2, y=constantes.SCREEN_HEIGHT / 1.5 + 2 * 32,
-                                            text="Charger Partie", width=200, height=28)
+        load_button = but.LoadGameButton(text="Charger Partie", width=200, height=28)
         self.v_box.add(load_button.with_space_around(bottom=15))
-        settings_button = but.SettingButton(x=constantes.SCREEN_WIDTH / 2, y=constantes.SCREEN_HEIGHT / 1.5,
-                                           text="Parametres", width=200, height=28)
+        settings_button = but.SettingButton(text="Parametres", width=200, height=28)
         self.v_box.add(settings_button.with_space_around(bottom=15))
-        quit_button = but.QuitButton(x=constantes.SCREEN_WIDTH / 2, y=constantes.SCREEN_HEIGHT / 1.5 - 64,
-                                            text="Quitter", width=200, height=28)
+        quit_button = but.QuitButton(text="Quitter", width=200, height=28)
         self.v_box.add(quit_button.with_space_around(bottom=15))
+
         self.manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
@@ -81,6 +78,7 @@ class WelcomeScreen(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
+        self.clear()
         arcade.draw_texture_rectangle(center_x= constantes.SCREEN_WIDTH/2, center_y=constantes.SCREEN_HEIGHT/2,
                                       width=constantes.SCREEN_WIDTH, height=constantes.SCREEN_HEIGHT,
                                       texture= self.logo if self.step == 0 else self.background)
@@ -99,14 +97,50 @@ class WelcomeScreen(arcade.View):
 
 class Game(arcade.View):
     def __init__(self):
-        self.window: MainWindow
         super().__init__()
+        self.manager = arcade.gui.UIManager()
+        self.manager.enable()
+        arcade.set_background_color(arcade.color.AMAZON)
+
+    def on_show_view(self):
+        arcade.set_background_color(arcade.color.AMAZON)
+
+    def on_draw(self):
+        self.clear()
+        arcade.draw_text("Game Screen - click to advance", constantes.SCREEN_WIDTH / 2, constantes.SCREEN_HEIGHT / 2,
+                         arcade.color.BLACK, font_size=30, anchor_x="center")
 
 class SettingScreen(arcade.View):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.manager = arcade.gui.UIManager()
+        self.manager.enable()
+        arcade.set_background_color(arcade.color.AMAZON)
+
+    def on_show_view(self):
+        arcade.set_background_color(arcade.color.AMAZON)
+    def on_draw(self):
+        self.clear()
+        arcade.draw_text("Setting Screen - click to advance", constantes.SCREEN_WIDTH/ 2, constantes.SCREEN_HEIGHT / 2,
+                         arcade.color.BLACK, font_size=30, anchor_x="center")
+
+
 
 class LoadScreen(arcade.View):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.manager = arcade.gui.UIManager()
+        self.manager.enable()
+        arcade.set_background_color(arcade.color.AMAZON)
+
+    def on_show_view(self):
+        arcade.set_background_color(arcade.color.AMAZON)
+    def on_draw(self):
+        self.clear()
+        arcade.draw_text("Load Screen - click to advance", constantes.SCREEN_WIDTH/ 2, constantes.SCREEN_HEIGHT / 2,
+                         arcade.color.BLACK, font_size=30, anchor_x="center")
+    def on_key_press(self, symbol: int, modifiers: int):
+        print(symbol)
 
 def main():
     window = MainWindow()

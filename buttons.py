@@ -10,18 +10,15 @@ class QuitButton(arcade.gui.UITextureButton):
 class SettingButton(arcade.gui.UITextureButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
         window = arcade.get_window()
-        window.clear()
         window.show_view(window.settingscreen)
 
 
 class NewGameButton(arcade.gui.UITextureButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
         window = arcade.get_window()
-        window.clear()
         window.show_view(window.gamescreen)
 
 class LoadGameButton(arcade.gui.UITextureButton):
     def on_click(self, event: arcade.gui.UIOnClickEvent):
         window = arcade.get_window()
-        window.clear()
         window.show_view(window.loadscreen)
